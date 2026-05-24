@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>الاختيار الذكي | مصمم البطاقات</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- أشهر الخطوط العربية -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&family=Tajawal:wght@300;500;700&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;600&family=Almarai:wght@300;700&family=Changa:wght@300;600;700&family=IBM+Plex+Sans+Arabic:wght@300;500;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Markazi+Text:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&family=Tajawal:wght@300;500;700&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;600&family=Almarai:wght@300;700&family=Changa:wght@300;600;700&family=IBM+Plex+Sans+Arabic:wght@300;500;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Markazi+Text:wght@400;700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -48,7 +47,7 @@
             flex-direction: column;
         }
 
-        /* الصفحة الافتتاحية */
+        /* الصفحة الأولى */
         .hero {
             flex: 1;
             display: flex;
@@ -154,7 +153,7 @@
 
         .page-content {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: auto;
             padding: 25px 20px 40px;
         }
@@ -332,15 +331,17 @@
         }
 
         @media(max-width:900px) {
+
             .editor-layout {
                 grid-template-columns: 1fr;
             }
 
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .hero h1 {
                 font-size: 1.9rem;
-            }
-            .cards-container{
-    grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -358,7 +359,7 @@
             <h1>عيد أضحى مبارك</h1>
 
             <p>
-                صمم بطاقتك  بسهولة مع الاختيار الذكي
+                صمم بطاقتك بسهولة مع الاختيار الذكي
             </p>
 
             <button class="primary-btn" onclick="changeStep(1,2)">
@@ -405,57 +406,45 @@
             </div>
 
             <!-- البطاقات -->
-<div id="gallery" class="cards-container">
+            <div id="gallery" class="cards-container">
 
-    <!-- البطاقة الأولى -->
-    <div class="card-item" onclick="selectCard('card1.jpeg', this)">
+                <div class="card-item" onclick="selectCard('card1.jpeg', this)">
+                    <img src="card1.jpeg" class="card-thumb">
 
-        <img src="card1.jpeg" class="card-thumb">
+                    <div class="card-footer">
+                        <span>التصميم الأول</span>
+                        <div class="select-badge">اختيار</div>
+                    </div>
+                </div>
 
-        <div class="card-footer">
-            <span>التصميم الأول</span>
-            <div class="select-badge">اختيار</div>
-        </div>
+                <div class="card-item" onclick="selectCard('card2.jpeg', this)">
+                    <img src="card2.jpeg" class="card-thumb">
 
-    </div>
+                    <div class="card-footer">
+                        <span>التصميم الثاني</span>
+                        <div class="select-badge">اختيار</div>
+                    </div>
+                </div>
 
-    <!-- البطاقة الثانية -->
-    <div class="card-item" onclick="selectCard('card2.jpeg', this)">
+                <div class="card-item" onclick="selectCard('card3.jpeg', this)">
+                    <img src="card3.jpeg" class="card-thumb">
 
-        <img src="card2.jpeg" class="card-thumb">
+                    <div class="card-footer">
+                        <span>التصميم الثالث</span>
+                        <div class="select-badge">اختيار</div>
+                    </div>
+                </div>
 
-        <div class="card-footer">
-            <span>التصميم الثاني</span>
-            <div class="select-badge">اختيار</div>
-        </div>
+                <div class="card-item" onclick="selectCard('card4.jpeg', this)">
+                    <img src="card4.jpeg" class="card-thumb">
 
-    </div>
+                    <div class="card-footer">
+                        <span>التصميم الرابع</span>
+                        <div class="select-badge">اختيار</div>
+                    </div>
+                </div>
 
-    <!-- البطاقة الثالثة -->
-    <div class="card-item" onclick="selectCard('card3.jpeg', this)">
-
-        <img src="card3.jpeg" class="card-thumb">
-
-        <div class="card-footer">
-            <span>التصميم الثالث</span>
-            <div class="select-badge">اختيار</div>
-        </div>
-
-    </div>
-
-    <!-- البطاقة الرابعة -->
-    <div class="card-item" onclick="selectCard('card4.jpeg', this)">
-
-        <img src="card4.jpeg" class="card-thumb">
-
-        <div class="card-footer">
-            <span>التصميم الرابع</span>
-            <div class="select-badge">اختيار</div>
-        </div>
-
-    </div>
-
-</div>
+            </div>
 
             <!-- المحرر -->
             <div class="editor-layout">
@@ -495,15 +484,10 @@
                         <select id="fontSelect" onchange="draw()">
 
                             <option value="'Cairo'">Cairo</option>
-
                             <option value="'Tajawal'">Tajawal</option>
-
                             <option value="'Amiri'">Amiri</option>
-
                             <option value="'Reem Kufi'">Reem Kufi</option>
-
                             <option value="'Almarai'">Almarai</option>
-
                             <option value="'Changa'">Changa</option>
 
                             <option value="'IBM Plex Sans Arabic'">
@@ -589,7 +573,7 @@
         // الخطوط المحملة
         const loadedFonts = new Set();
 
-        // تغيير الصفحات
+        // تغيير الصفحة
         function changeStep(from, to) {
 
             document.getElementById('step' + from)
@@ -648,7 +632,7 @@
             pos.y = (touch.clientY - rect.top)
                 * (canvas.height / rect.height);
 
-            draw();
+            redrawCanvas();
         }
 
         // تحميل الخط
@@ -657,7 +641,7 @@
             const loader =
                 document.getElementById('fontLoader');
 
-            // اذا كان محمل مسبقاً
+            // اذا كان الخط محمل مسبقاً
             if (loadedFonts.has(font)) {
                 return true;
             }
@@ -669,12 +653,14 @@
 
             try {
 
+                // تحميل الخط
                 await document.fonts.load(
                     `normal 60px ${font}`
                 );
 
                 await document.fonts.ready;
 
+                // التأكد من جاهزية الخط
                 const isLoaded =
                     document.fonts.check(
                         `60px ${font}`
@@ -688,8 +674,13 @@
                         '✅ تم تحميل الخط';
 
                     setTimeout(() => {
+
                         loader.classList.remove('active');
-                    }, 700);
+
+                        // إعادة الرسم مباشرة
+                        redrawCanvas();
+
+                    }, 300);
 
                     return true;
                 }
@@ -714,10 +705,12 @@
             }
         }
 
-        // الرسم
-        async function draw() {
+        // إعادة الرسم
+        function redrawCanvas() {
 
-            if (!bg.src) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.drawImage(bg, 0, 0);
 
             const font =
                 document.getElementById('fontSelect').value;
@@ -733,13 +726,6 @@
 
             const color =
                 document.getElementById('colorPicker').value;
-
-            // تحميل الخط قبل الرسم
-            await loadSelectedFont(font);
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            ctx.drawImage(bg, 0, 0);
 
             ctx.fillStyle = color;
 
@@ -757,8 +743,22 @@
 
             ctx.fillText(text, pos.x, pos.y);
 
-            // إعادة الظل
             ctx.shadowColor = 'transparent';
+        }
+
+        // الرسم
+        async function draw() {
+
+            if (!bg.src) return;
+
+            const font =
+                document.getElementById('fontSelect').value;
+
+            // تحميل الخط
+            await loadSelectedFont(font);
+
+            // إعادة الرسم مباشرة
+            redrawCanvas();
         }
 
         // تحميل البطاقة
