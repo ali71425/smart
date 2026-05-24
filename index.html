@@ -62,10 +62,19 @@
         }
 
         #logo-start {
-            width: 140px;
-            margin-bottom: 20px;
-            animation: zoomIn 1.5s ease;
-        }
+    width: min(240px, 65vw);
+    margin-bottom: 20px;
+    animation: zoomIn 1.5s ease;
+
+    /* تحويل الشعار للأبيض */
+    filter:
+        brightness(0)
+        invert(1);
+
+    /* تحسين الظهور */
+    drop-shadow:
+        0 4px 12px rgba(255,255,255,.25);
+}
 
         @keyframes zoomIn {
             from {
@@ -172,6 +181,30 @@
             color: #666;
         }
 
+        .hero-tagline{
+    margin-top:22px;
+    font-size:1.2rem;
+    font-weight:700;
+    color:#ffffff;
+    opacity:.95;
+
+    animation:floatText 2s ease-in-out infinite;
+}
+
+@keyframes floatText{
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
         /* البطاقات */
         .cards-container {
             display: grid;
@@ -241,11 +274,17 @@
         }
 
         canvas {
-            width: 100%;
-            border-radius: 22px;
-            background: #fff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
-        }
+    width: 100%;
+    max-width: 380px;
+    display: block;
+    margin: auto;
+
+    border-radius: 22px;
+    background: #fff;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .1);
+}
 
         .controls {
             background: #fff;
@@ -333,8 +372,8 @@
         @media(max-width:900px) {
 
             .editor-layout {
-                grid-template-columns: 1fr;
-            }
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
 
             .cards-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -402,7 +441,11 @@
             <button class="primary-btn" onclick="changeStep(1,2)">
                 ابدأ التصميم
             </button>
+             <p class="hero-tagline">
 
+
+    😍 التسويق لعبتنا
+</p>
         </div>
 
     </div>
