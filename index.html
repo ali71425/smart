@@ -22,8 +22,6 @@
             --card: #ffffff;
             --border: #e5e7eb;
             --text: #1f2937;
-            --success: #10b981;
-            --warning: #f59e0b;
         }
 
         * {
@@ -37,12 +35,6 @@
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html, body {
-            scroll-behavior: smooth;
         }
 
         .step {
@@ -55,7 +47,7 @@
             flex-direction: column;
         }
 
-        /* ============ الصفحة الأولى ============ */
+        /* الصفحة الأولى */
         .hero {
             flex: 1;
             display: flex;
@@ -63,43 +55,33 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, rgba(75, 0, 130, .95), rgba(106, 27, 154, .92));
+            padding: 30px;
+            background:
+                linear-gradient(135deg, rgba(75, 0, 130, .95), rgba(106, 27, 154, .92));
             color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, .05);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         #logo-start {
-            width: min(240px, 65vw);
-            margin-bottom: 20px;
-            animation: zoomIn 1.5s ease;
-            position: relative;
-            z-index: 1;
-        }
+    width: min(240px, 65vw);
+    margin-bottom: 20px;
+    animation: zoomIn 1.5s ease;
+
+    /* تحويل الشعار للأبيض */
+    filter:
+        brightness(0)
+        invert(1);
+
+    /* تحسين الظهور */
+    drop-shadow:
+        0 4px 12px rgba(255,255,255,.25);
+}
 
         @keyframes zoomIn {
             from {
                 transform: scale(.2);
                 opacity: 0;
             }
+
             to {
                 transform: scale(1);
                 opacity: 1;
@@ -107,36 +89,13 @@
         }
 
         .hero h1 {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            font-weight: 700;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
         }
 
         .hero p {
             opacity: .95;
             margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-        }
-
-        .hero-tagline {
-            margin-top: 22px;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            font-weight: 700;
-            color: #ffffff;
-            opacity: .95;
-            animation: floatText 2s ease-in-out infinite;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes floatText {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
-            100% { transform: translateY(0px); }
         }
 
         .primary-btn {
@@ -148,27 +107,19 @@
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: .3s ease;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+            transition: .25s;
         }
 
         .primary-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
         }
 
-        .primary-btn:active {
-            transform: translateY(0);
-        }
-
-        /* ============ الهيدر ============ */
+        /* الهيدر */
         .top-header {
             width: 100%;
             background: #fff;
             border-bottom: 1px solid var(--border);
-            padding: 12px 15px;
+            padding: 14px 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -181,91 +132,129 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 0;
+            gap: 12px;
         }
 
         .brand img {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        .brand-text {
-            min-width: 0;
         }
 
         .brand-text h2 {
-            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            font-size: 1.1rem;
             color: var(--primary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .brand-text p {
-            font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+            font-size: .85rem;
             color: #666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .header-badge {
             background: rgba(75, 0, 130, .1);
             color: var(--primary);
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 12px;
-            font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+            font-size: .9rem;
             font-weight: 700;
-            white-space: nowrap;
-            flex-shrink: 0;
         }
 
-        /* ============ محتوى الصفحة ============ */
         .page-content {
             width: 100%;
             max-width: 1300px;
             margin: auto;
-            padding: 20px;
+            padding: 25px 20px 40px;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 25px;
-            animation: slideUp 0.6s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .section-title h1 {
             color: var(--primary);
             margin-bottom: 10px;
-            font-size: clamp(1.5rem, 5vw, 2.2rem);
         }
 
         .section-title p {
             color: #666;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
         }
 
-        /* ============ البطاقات ============ */
+        .hero-tagline{
+    margin-top:22px;
+    font-size:1.2rem;
+    font-weight:700;
+    color:#ffffff;
+    opacity:.95;
+
+    animation:floatText 2s ease-in-out infinite;
+}
+.hero-link{
+    text-decoration:none;
+    display:inline-block;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.hero-link:hover{
+    transform:scale(1.05);
+    opacity:.9;
+}
+
+@keyframes floatText{
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.font-size-control{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.font-size-control input{
+    text-align:center;
+    font-weight:700;
+    font-size:1rem;
+}
+
+.size-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#fff;
+    font-size:1.4rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.size-btn:hover{
+    transform:scale(1.05);
+}
+        /* البطاقات */
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
         }
 
         .gallery-hidden {
@@ -273,16 +262,15 @@
         }
 
         .card-item {
-            background: var(--card);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all .3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
-            position: relative;
-            aspect-ratio: 3/4;
-        }
+    background: var(--card);
+    border-radius: 26px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: .3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    position: relative;
+}
 
         .card-item:hover {
             transform: translateY(-6px);
@@ -290,125 +278,88 @@
             box-shadow: 0 12px 28px rgba(75, 0, 130, .15);
         }
 
-        .card-item:active {
-            transform: translateY(-3px);
-        }
-
         .card-item.active-card {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(75, 0, 130, .15);
+            box-shadow: 0 0 0 4px rgba(75, 0, 130, .15);
         }
 
         .card-thumb {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
+            aspect-ratio: 4/5;
+            object-fit: cover;
         }
 
         .card-footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 12px;
+            padding: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to top, rgba(0, 0, 0, .7), transparent);
-            color: #fff;
         }
 
         .card-footer span {
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
         }
 
         .select-badge {
             background: var(--primary);
             color: #fff;
             padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            border-radius: 999px;
+            font-size: .8rem;
         }
 
-        /* ============ المحرر ============ */
+        /* المحرر */
         .editor-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 25px;
             margin-top: 20px;
             align-items: start;
         }
 
-        .canvas-wrapper {
-            position: relative;
-            background: var(--card);
-            border-radius: 18px;
-            padding: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 300px;
-        }
-
         canvas {
-            width: 100%;
-            max-width: 380px;
-            display: block;
-            border-radius: 14px;
-            background: #fff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
-            touch-action: none;
-            cursor: crosshair;
-        }
+    width: 100%;
+    max-width: 380px;
+    display: block;
+    margin: auto;
+
+    border-radius: 22px;
+    background: #fff;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .1);
+}
 
         .controls {
             background: #fff;
-            border-radius: 18px;
-            padding: 20px;
+            border-radius: 22px;
+            padding: 22px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
             display: grid;
-            gap: 14px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .control-group {
-            display: grid;
-            gap: 8px;
+            gap: 16px;
         }
 
         .controls label {
             font-weight: 700;
             color: #444;
-            font-size: 0.95rem;
+            margin-bottom: 6px;
             display: block;
         }
 
         .controls input,
         .controls select {
             width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1.5px solid #d1d5db;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #d1d5db;
             font-family: 'Cairo', sans-serif;
             outline: none;
-            transition: all .2s ease;
-            font-size: 1rem;
         }
 
         .controls input:focus,
         .controls select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(75, 0, 130, .1);
-            background: rgba(75, 0, 130, .02);
-        }
-
-        .controls input[type="number"] {
-            font-variant-numeric: tabular-nums;
         }
 
         .download-btn {
@@ -416,50 +367,23 @@
             color: #fff;
             border: none;
             padding: 14px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all .3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(75, 0, 130, .3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(75, 0, 130, .4);
-        }
-
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        .download-btn.loading {
-            opacity: 0.7;
-            cursor: not-allowed;
         }
 
         .hint {
             margin-top: 14px;
-            background: #fef3c7;
-            border: 1.5px solid #fcd34d;
-            color: #92400e;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
             padding: 12px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            border-radius: 12px;
+            font-size: .92rem;
         }
 
-        .hint-icon {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        /* ============ مؤشر تحميل الخط ============ */
+        /* مؤشر تحميل الخط */
         .loading-font {
             display: none;
             background: #ede9fe;
@@ -467,334 +391,80 @@
             padding: 10px;
             border-radius: 10px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: .9rem;
             font-weight: bold;
-            animation: pulse 1s infinite;
         }
 
         .loading-font.active {
             display: block !important;
-        }
-
-        .loading-font.success {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .loading-font.error {
-            background: #fee2e2;
-            color: #991b1b;
+            animation: pulse 1s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .6; }
+            0% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .5
+            }
+
+            100% {
+                opacity: 1
+            }
         }
 
-        /* ============ الفوتر ============ */
-        .site-footer {
-            margin-top: 40px;
-            background: #ffffff;
-            border-top: 1px solid #e5e7eb;
-            padding: 20px;
-        }
+        @media(max-width:900px) {
 
-        .footer-content {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .footer-content p {
-            color: #666;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .footer-link {
-            text-decoration: none;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #fff;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-weight: 700;
-            transition: all .3s ease;
-            display: inline-block;
-        }
-
-        .footer-link:hover {
-            transform: translateY(-2px);
-            opacity: .9;
-        }
-
-        /* ============ Responsive Design ============ */
-        @media (max-width: 1024px) {
             .editor-layout {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .cards-container {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            }
-
-            .page-content {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-header {
-                padding: 10px 12px;
-            }
-
-            .brand {
-                gap: 8px;
-            }
-
-            .brand img {
-                width: 40px;
-                height: 40px;
-            }
-
-            .brand-text h2 {
-                font-size: 0.9rem;
-            }
-
-            .brand-text p {
-                display: none;
-            }
-
-            .header-badge {
-                display: none;
-            }
-
-            .hero {
-                padding: 20px 15px;
-            }
-
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-
-            .cards-container {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 12px;
-                margin-bottom: 20px;
-            }
-
-            .card-footer span {
-                font-size: 0.8rem;
-            }
-
-            .select-badge {
-                padding: 5px 10px;
-                font-size: 0.7rem;
-            }
-
-            .controls {
-                padding: 16px;
-                gap: 12px;
-                max-height: 60vh;
-                overflow-y: auto;
-            }
-
-            .controls label {
-                font-size: 0.9rem;
-            }
-
-            .controls input,
-            .controls select {
-                padding: 10px;
-                font-size: 0.95rem;
-            }
-
-            .download-btn {
-                padding: 12px;
-                font-size: 0.95rem;
-            }
-
-            .canvas-wrapper {
-                padding: 10px;
-                min-height: 200px;
-            }
-
-            canvas {
-                max-width: 90%;
-            }
-
-            .page-content {
-                padding: 12px;
-            }
-
-            .section-title h1 {
-                font-size: 1.4rem;
-            }
-
-            .section-title p {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.3rem;
-                margin-bottom: 10px;
-            }
-
-            .hero p {
-                margin-bottom: 20px;
-                font-size: 0.9rem;
-            }
-
-            .hero-tagline {
-                font-size: 0.95rem;
-                margin-top: 15px;
-            }
-
-            .primary-btn {
-                padding: 12px 24px;
-                font-size: 0.95rem;
-            }
-
-            .page-content {
-                padding: 10px;
-            }
-
-            #logo-start {
-                width: min(200px, 55vw);
-                margin-bottom: 15px;
-            }
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
 
             .cards-container {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
             }
 
-            .card-footer {
-                padding: 8px;
-            }
-
-            .card-footer span {
-                font-size: 0.75rem;
-            }
-
-            .select-badge {
-                padding: 4px 8px;
-                font-size: 0.65rem;
-            }
-
-            .editor-layout {
-                gap: 12px;
-            }
-
-            .canvas-wrapper {
-                min-height: auto;
-                padding: 8px;
-                justify-content: center;
-            }
-
-            canvas {
-                max-width: 80vw;
-                max-height: 260px;
-                width: 80vw !important;
-                height: auto;
-            }
-
-            .controls {
-                padding: 14px;
-                gap: 10px;
-                max-height: 50vh;
-            }
-
-            .section-title h1 {
-                font-size: 1.2rem;
-                margin-bottom: 8px;
-            }
-
-            .hint {
-                font-size: 0.85rem;
-                padding: 10px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-content p {
-                font-size: 0.85rem;
-            }
-
-            .control-group {
-                gap: 6px;
-            }
-
-            .controls label {
-                font-size: 0.85rem;
-            }
-
-            .download-btn {
-                padding: 10px;
-                font-size: 0.9rem;
+            .hero h1 {
+                font-size: 1.9rem;
             }
         }
+        .site-footer{
+    margin-top:40px;
+    background:#ffffff;
+    border-top:1px solid #e5e7eb;
+    padding:20px;
+}
 
-        @media (max-width: 360px) {
-            .editor-layout {
-                gap: 10px;
-            }
+.footer-content{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
 
-            canvas {
-                max-width: 75vw;
-                max-height: 240px;
-                width: 75vw !important;
-            }
+.footer-content p{
+    color:#666;
+    font-size:.95rem;
+    font-weight:600;
+}
 
-            .controls {
-                padding: 12px;
-                gap: 8px;
-            }
+.footer-link{
+    text-decoration:none;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    padding:10px 18px;
+    border-radius:12px;
+    font-weight:700;
+    transition:.3s;
+}
 
-            .primary-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-
-            .page-content {
-                padding: 8px;
-            }
-        }
-
-        /* ============ Accessibility ============ */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* ============ Dark Mode Support ============ */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #1a1a1a;
-                --card: #2d2d2d;
-                --text: #f0f0f0;
-                --border: #404040;
-            }
-
-            .hint {
-                background: rgba(241, 159, 11, .15);
-                border-color: rgba(241, 159, 11, .3);
-                color: #fbbf24;
-            }
-        }
+.footer-link:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
     </style>
 </head>
 
@@ -802,16 +472,32 @@
 
     <!-- الصفحة الأولى -->
     <div id="step1" class="step active">
+
         <div class="hero">
-            <!-- 📍 اللوقو - logo.png -->
-            <img src="logo.png" id="logo-start" alt="شعار الاختيار الذكي">
+
+            <img src="logo.png" id="logo-start" alt="شعار">
+
             <h1>عيد أضحى مبارك</h1>
-            <p>صمم بطاقتك بسهولة مع الاختيار الذكي</p>
+
+            <p>
+                صمم بطاقتك بسهولة مع الاختيار الذكي
+            </p>
+
             <button class="primary-btn" onclick="changeStep(1,2)">
                 ابدأ التصميم
             </button>
-            <p class="hero-tagline">😍 التسويق لعبتنا</p>
+             <p class="hero-tagline">
+
+
+    <a href="https://smartch.sa/"
+   target="_blank"
+   class="hero-tagline hero-link">
+
+    😍 التسويق لعبتنا
+
+     </a>
         </div>
+
     </div>
 
     <!-- صفحة التصميم -->
@@ -819,59 +505,69 @@
 
         <!-- الهيدر -->
         <header class="top-header">
+
             <div class="brand">
-                <!-- 📍 اللوقو في الهيدر - logo.png -->
-                <img src="logo.png" alt="شعار" style="flex-shrink: 0; width: 48px; height: 48px; object-fit: contain;">
+
+                <img src="logo.png" alt="شعار">
+
                 <div class="brand-text">
                     <h2>الاختيار الذكي</h2>
-                    <p>مصمم البطاقات</p>
+                    <p>منصة تصميم بطاقات المعايدة</p>
                 </div>
+
             </div>
+
             <div class="header-badge">
-                🎨 صمم بطاقتك
+                🎨 صمم بطاقتك الآن
             </div>
+
         </header>
 
         <div class="page-content">
 
             <div class="section-title">
+
                 <h1>اختر التصميم المناسب</h1>
-                <p>اضغط على أي بطاقة للبدء في التعديل</p>
+
+                <p>
+                    اضغط على أي بطاقة للبدء في التعديل
+                </p>
+
             </div>
 
             <!-- البطاقات -->
             <div id="gallery" class="cards-container">
 
-                <!-- 📍 البطاقة الأولى - card1.jpeg -->
-                <div class="card-item" onclick="selectCard('card1', this)" role="button" tabindex="0" aria-label="التصميم الأول">
-                    <img src="card1.jpeg" class="card-thumb" alt="التصميم الأول">
+                <div class="card-item" onclick="selectCard('card1.jpeg', this)">
+                    <img src="card1.jpeg" class="card-thumb">
+
                     <div class="card-footer">
                         <span>التصميم الأول</span>
                         <div class="select-badge">اختيار</div>
                     </div>
                 </div>
 
-                <!-- 📍 البطاقة الثانية - card2.jpeg -->
-                <div class="card-item" onclick="selectCard('card2', this)" role="button" tabindex="0" aria-label="التصميم الثاني">
-                    <img src="card2.jpeg" class="card-thumb" alt="التصميم الثاني">
+                <div class="card-item" onclick="selectCard('card2.jpeg', this)">
+                    <img src="card2.jpeg" class="card-thumb">
+
                     <div class="card-footer">
                         <span>التصميم الثاني</span>
                         <div class="select-badge">اختيار</div>
                     </div>
                 </div>
 
-                <!-- 📍 البطاقة الثالثة - card3.jpeg -->
-                <div class="card-item" onclick="selectCard('card3', this)" role="button" tabindex="0" aria-label="التصميم الثالث">
-                    <img src="card3.jpeg" class="card-thumb" alt="التصميم الثالث">
+                <div class="card-item" onclick="selectCard('card3.jpeg', this)">
+                    <img src="card3.jpeg" class="card-thumb">
+
                     <div class="card-footer">
                         <span>التصميم الثالث</span>
                         <div class="select-badge">اختيار</div>
                     </div>
                 </div>
 
-                <!-- 📍 البطاقة الرابعة - card4.jpeg -->
-                <div class="card-item" onclick="selectCard('card4', this)" role="button" tabindex="0" aria-label="التصميم الرابع">
-                    <img src="card4.jpeg" class="card-thumb" alt="التصميم الرابع">
+                <div class="card-item" onclick="selectCard('card4.jpeg', this)">
+                    <img src="card4.jpeg" class="card-thumb">
+
                     <div class="card-footer">
                         <span>التصميم الرابع</span>
                         <div class="select-badge">اختيار</div>
@@ -883,74 +579,123 @@
             <!-- المحرر -->
             <div class="editor-layout">
 
-                <div class="canvas-wrapper">
+                <div>
+
                     <canvas id="canvas" style="display:none;"></canvas>
+
                     <div class="hint" id="hint" style="display:none;">
-                        <span class="hint-icon">💡</span>
-                        <span>اضغط على البطاقة لتحديد مكان ظهور الاسم</span>
+                        💡 اضغط داخل البطاقة لتحديد مكان ظهور الاسم
                     </div>
+
                 </div>
 
                 <!-- الأدوات -->
                 <div id="editor-controls" class="controls" style="display:none;">
 
-                    <div class="loading-font" id="fontLoader"></div>
+                    <div class="loading-font" id="fontLoader">
+                        ⏳ جاري تحميل الخط...
+                    </div>
 
-                    <div class="control-group">
-                        <label for="nameInput">الاسم على البطاقة</label>
+                    <div>
+
+                        <label>الاسم على البطاقة</label>
+
                         <input type="text"
                             id="nameInput"
                             placeholder="اكتب الاسم هنا"
-                            maxlength="30"
-                            oninput="draw()"
-                            autocomplete="off">
+                            oninput="draw()">
+
                     </div>
 
-                    <div class="control-group">
-                        <label for="fontSelect">نوع الخط</label>
+                    <div>
+
+                        <label>نوع الخط</label>
+
                         <select id="fontSelect" onchange="draw()">
+
                             <option value="'Cairo'">Cairo</option>
                             <option value="'Tajawal'">Tajawal</option>
                             <option value="'Amiri'">Amiri</option>
                             <option value="'Reem Kufi'">Reem Kufi</option>
                             <option value="'Almarai'">Almarai</option>
                             <option value="'Changa'">Changa</option>
-                            <option value="'IBM Plex Sans Arabic'">IBM Plex Sans Arabic</option>
-                            <option value="'Noto Naskh Arabic'">خط النسخ</option>
+
+                            <option value="'IBM Plex Sans Arabic'">
+                                IBM Plex Sans Arabic
+                            </option>
+
+                            <option value="'Noto Naskh Arabic'">
+                                خط النسخ
+                            </option>
+
                             <option value="'Lateef'">Lateef</option>
-                            <option value="'Markazi Text'">Markazi Text</option>
+
+                            <option value="'Markazi Text'">
+                                Markazi Text
+                            </option>
+
                         </select>
+
                     </div>
 
-                    <div class="control-group">
-                        <label for="fontSize">حجم الخط: <span id="fontSizeValue">60</span>px</label>
-                        <input type="range"
-                            id="fontSize"
-                            value="60"
-                            min="20"
-                            max="200"
-                            oninput="updateFontSizeLabel(); draw();"
-                            style="cursor: pointer;">
-                    </div>
+                    <div>
 
-                    <div class="control-group">
-                        <label for="colorPicker">لون النص</label>
+    <label>حجم الخط</label>
+
+    <div class="font-size-control">
+
+        <button type="button"
+            class="size-btn"
+            onclick="changeFontSize(-2)">
+
+            −
+
+        </button>
+
+        <input type="text"
+            id="fontSize"
+            value="60"
+            readonly>
+
+        <button type="button"
+            class="size-btn"
+            onclick="changeFontSize(2)">
+
+            +
+
+        </button>
+
+    </div>
+
+</div>
+
+                    <div>
+
+                        <label>لون النص</label>
+
                         <input type="color"
                             id="colorPicker"
                             value="#4B0082"
                             onchange="draw()">
+
                     </div>
 
-                    <div class="control-group">
-                        <label for="fontWeight">وزن الخط</label>
+                    <div>
+
+                        <label>وزن الخط</label>
+
                         <select id="fontWeight" onchange="draw()">
+
                             <option value="normal">عادي</option>
+
                             <option value="bold">عريض</option>
+
                         </select>
+
                     </div>
 
                     <button class="download-btn" onclick="downloadCard()">
-                        ⬇️ تنزيل البطاقة
+                        تنزيل البطاقة
                     </button>
 
                 </div>
@@ -966,138 +711,146 @@
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
 
+        const bg = new Image();
+
         let pos = {
             x: 540,
             y: 540
         };
 
-        let selectedCard = null;
-        let canvasWidth = 380;
-        let canvasHeight = 500;
-        let selectedCardImage = null;
-
+        // الخطوط المحملة
         const loadedFonts = new Set();
-
-        // تحديث قيمة حجم الخط
-        function updateFontSizeLabel() {
-            document.getElementById('fontSizeValue').textContent = 
-                document.getElementById('fontSize').value;
-        }
 
         // تغيير الصفحة
         function changeStep(from, to) {
-            const fromStep = document.getElementById('step' + from);
-            const toStep = document.getElementById('step' + to);
 
-            fromStep.classList.remove('active');
-            toStep.classList.add('active');
+            document.getElementById('step' + from)
+                .classList.remove('active');
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('step' + to)
+                .classList.add('active');
         }
+        function changeFontSize(amount){
 
+    const input =
+        document.getElementById('fontSize');
+
+    let currentSize =
+        parseInt(input.value);
+
+    currentSize += amount;
+
+    // أقل وأعلى حجم
+    if(currentSize < 20){
+        currentSize = 20;
+    }
+
+    if(currentSize > 200){
+        currentSize = 200;
+    }
+
+    input.value = currentSize;
+
+    draw();
+}
         // اختيار البطاقة
-        function selectCard(cardId, element) {
-            selectedCard = cardId;
-            
-            // إزالة الحالة النشطة من جميع البطاقات
-            document.querySelectorAll('.card-item').forEach(card => {
-                card.classList.remove('active-card');
-            });
+        function selectCard(src, element) {
 
-            // إضافة الحالة النشطة للبطاقة المختارة
+            document.querySelectorAll('.card-item')
+                .forEach(card => {
+                    card.classList.remove('active-card');
+                });
+
             element.classList.add('active-card');
 
-            // إخفاء معرض البطاقات
-            document.getElementById('gallery').classList.add('gallery-hidden');
+            // اخفاء البطاقات
+            document.getElementById('gallery')
+                .classList.add('gallery-hidden');
 
-            // تحديد حجم الـ canvas بناءً على حجم الشاشة
-            if (window.innerWidth <= 480) {
-                canvasWidth = 300;
-                canvasHeight = 393;
-            } else if (window.innerWidth <= 768) {
-                canvasWidth = 340;
-                canvasHeight = 445;
-            } else {
-                canvasWidth = 380;
-                canvasHeight = 500;
-            }
+            bg.src = src;
 
-            canvas.width = canvasWidth;
-            canvas.height = canvasHeight;
+            bg.onload = () => {
 
-            // تحميل صورة البطاقة
-            const cardImageMap = {
-                card1: 'card1.jpeg',
-                card2: 'card2.jpeg',
-                card3: 'card3.jpeg',
-                card4: 'card4.jpeg'
-            };
+                canvas.width = bg.naturalWidth;
+                canvas.height = bg.naturalHeight;
 
-            selectedCardImage = new Image();
-            selectedCardImage.src = cardImageMap[cardId];
-
-            selectedCardImage.onload = function() {
                 canvas.style.display = 'block';
-                document.getElementById('editor-controls').style.display = 'grid';
-                document.getElementById('hint').style.display = 'flex';
 
-                // إعادة تعيين موضع النص
-                pos = { x: canvasWidth / 2, y: canvasHeight / 2 };
-                
+                document.getElementById('editor-controls')
+                    .style.display = 'grid';
+
+                document.getElementById('hint')
+                    .style.display = 'block';
+
                 draw();
-            };
-
-            selectedCardImage.onerror = function() {
-                alert(`تعذر تحميل الصورة: ${cardImageMap[cardId]}\nتأكد من وجود الملف في نفس مجلد index.html`);
-                document.getElementById('gallery').classList.remove('gallery-hidden');
             };
         }
 
-        // تحديد موضع النص
+        // تحديد مكان النص
         canvas.addEventListener('mousedown', updatePosition);
-        canvas.addEventListener('touchstart', updatePosition, { passive: false });
+        canvas.addEventListener('touchstart', updatePosition);
 
         function updatePosition(event) {
-            if (event.touches) {
-                event.preventDefault();
-            }
 
             const rect = canvas.getBoundingClientRect();
+
             const touch = event.touches ? event.touches[0] : event;
 
-            pos.x = (touch.clientX - rect.left) * (canvas.width / rect.width);
-            pos.y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+            pos.x = (touch.clientX - rect.left)
+                * (canvas.width / rect.width);
+
+            pos.y = (touch.clientY - rect.top)
+                * (canvas.height / rect.height);
 
             redrawCanvas();
         }
 
         // تحميل الخط
         async function loadSelectedFont(font) {
-            const loader = document.getElementById('fontLoader');
 
+            const loader =
+                document.getElementById('fontLoader');
+
+            // اذا كان الخط محمل مسبقاً
             if (loadedFonts.has(font)) {
                 return true;
             }
 
             loader.classList.add('active');
-            loader.innerHTML = '⏳ جاري تحميل الخط...';
-            loader.classList.remove('success', 'error');
+
+            loader.innerHTML =
+                '⏳ جاري تحميل الخط...';
 
             try {
-                await document.fonts.load(`normal 60px ${font}`);
+
+                // تحميل الخط
+                await document.fonts.load(
+                    `normal 60px ${font}`
+                );
+
                 await document.fonts.ready;
 
-                const isLoaded = document.fonts.check(`60px ${font}`);
+                // التأكد من جاهزية الخط
+                const isLoaded =
+                    document.fonts.check(
+                        `60px ${font}`
+                    );
 
                 if (isLoaded) {
+
                     loadedFonts.add(font);
-                    loader.innerHTML = '✅ تم تحميل الخط';
-                    loader.classList.add('success');
+
+                    loader.innerHTML =
+                        '✅ تم تحميل الخط';
 
                     setTimeout(() => {
+
                         loader.classList.remove('active');
+
+                        // إعادة الرسم مباشرة
                         redrawCanvas();
-                    }, 500);
+
+                    }, 300);
 
                     return true;
                 }
@@ -1105,13 +858,18 @@
                 throw new Error('Font not loaded');
 
             } catch (error) {
-                console.error('خطأ في تحميل الخط:', error);
-                loader.innerHTML = '⚠️ تعذر تحميل الخط';
-                loader.classList.add('error');
+
+                console.error(
+                    'خطأ أثناء تحميل الخط:',
+                    error
+                );
+
+                loader.innerHTML =
+                    '⚠️ تعذر تحميل الخط';
 
                 setTimeout(() => {
                     loader.classList.remove('active');
-                }, 2000);
+                }, 1500);
 
                 return false;
             }
@@ -1119,25 +877,34 @@
 
         // إعادة الرسم
         function redrawCanvas() {
-            if (!selectedCard || !selectedCardImage) return;
 
-            const ctx = canvas.getContext('2d');
-            
-            // رسم صورة البطاقة
-            ctx.drawImage(selectedCardImage, 0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const font = document.getElementById('fontSelect').value;
-            const fontSize = document.getElementById('fontSize').value;
-            const fontWeight = document.getElementById('fontWeight').value;
-            const text = document.getElementById('nameInput').value;
-            const color = document.getElementById('colorPicker').value;
+            ctx.drawImage(bg, 0, 0);
 
-            if (!text) return;
+            const font =
+                document.getElementById('fontSelect').value;
+
+            const fontSize =
+                document.getElementById('fontSize').value;
+
+            const fontWeight =
+                document.getElementById('fontWeight').value;
+
+            const text =
+                document.getElementById('nameInput').value;
+
+            const color =
+                document.getElementById('colorPicker').value;
 
             ctx.fillStyle = color;
+
             ctx.textAlign = 'center';
+
             ctx.textBaseline = 'middle';
-            ctx.font = `${fontWeight} ${fontSize}px ${font}`;
+
+            ctx.font =
+                `${fontWeight} ${fontSize}px ${font}`;
 
             // ظل النص
             ctx.shadowColor = 'rgba(0,0,0,.18)';
@@ -1151,64 +918,54 @@
 
         // الرسم
         async function draw() {
-            if (!selectedCard) return;
 
-            const font = document.getElementById('fontSelect').value;
+            if (!bg.src) return;
+
+            const font =
+                document.getElementById('fontSelect').value;
+
+            // تحميل الخط
             await loadSelectedFont(font);
+
+            // إعادة الرسم مباشرة
             redrawCanvas();
         }
 
-        // تنزيل البطاقة
+        // تحميل البطاقة
         function downloadCard() {
-            const text = document.getElementById('nameInput').value;
-            
-            if (!text.trim()) {
-                alert('يرجى إدخال اسماً قبل التنزيل');
-                return;
-            }
 
-            const btn = event.target;
-            btn.classList.add('loading');
-            btn.disabled = true;
+            const link = document.createElement('a');
 
-            try {
-                const link = document.createElement('a');
-                link.download = `بطاقة-${text}-${new Date().getTime()}.png`;
-                link.href = canvas.toDataURL('image/png', 1);
-                link.click();
+            link.download = 'بطاقة-العيد.png';
 
-                setTimeout(() => {
-                    btn.classList.remove('loading');
-                    btn.disabled = false;
-                }, 300);
+            link.href =
+                canvas.toDataURL('image/png', 1);
 
-            } catch (error) {
-                console.error('خطأ في التنزيل:', error);
-                alert('حدث خطأ أثناء التنزيل');
-                btn.classList.remove('loading');
-                btn.disabled = false;
-            }
+            link.click();
         }
 
-        // دعم لوحة المفاتيح
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && document.getElementById('nameInput') === document.activeElement) {
-                downloadCard();
-            }
-        });
-
     </script>
-
     <!-- الفوتر -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>جميع الحقوق محفوظة © 2026 الاختيار الذكي</p>
-            <a href="https://smartch.sa/" target="_blank" class="footer-link">
-                زيارة الموقع الرسمي
-            </a>
-        </div>
-    </footer>
+<footer class="site-footer">
 
+    <div class="footer-content">
+
+        <p>
+            جميع الحقوق محفوظة © 2026
+            الاختيار الذكي
+        </p>
+
+        <a href="https://smartch.sa/"
+            target="_blank"
+            class="footer-link">
+
+            زيارة الموقع الرسمي
+
+        </a>
+
+    </div>
+
+</footer>
 </body>
 
 </html>
