@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الاختيار الذكي | مصمم البطاقات</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- أشهر الخطوط العربية -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700&family=Tajawal:wght@300;500;700&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;600&family=Almarai:wght@300;700&family=Changa:wght@300;600;700&family=IBM+Plex+Sans+Arabic:wght@300;500;700&family=Noto+Naskh+Arabic:wght@400;700&family=Lateef:wght@400;700&family=Markazi+Text:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4B0082;
+            --secondary: #6a1b9a;
+            --bg: #f3f5f9;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --text: #1f2937;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .step {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* الصفحة الافتتاحية */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background:
+                linear-gradient(135deg, rgba(75, 0, 130, .95), rgba(106, 27, 154, .92));
+            color: #fff;
+        }
+
+        #logo-start {
+            width: 140px;
+            margin-bottom: 20px;
+            animation: zoomIn 1.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(.2);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            opacity: .95;
+            margin-bottom: 25px;
+        }
+
+        .primary-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 14px;
+            background: #fff;
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* الهيدر */
+        .top-header {
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+        }
+
+        .brand-text h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .brand-text p {
+            font-size: .85rem;
+            color: #666;
+        }
+
+        .header-badge {
+            background: rgba(75, 0, 130, .1);
+            color: var(--primary);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        .page-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 25px 20px 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* البطاقات */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .gallery-hidden {
+            display: none !important;
+        }
+
+        .card-item {
+            background: var(--card);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: .3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+        }
+
+        .card-item:hover {
+            transform: translateY(-6px);
+            border-color: rgba(75, 0, 130, .3);
+            box-shadow: 0 12px 28px rgba(75, 0, 130, .15);
+        }
+
+        .card-item.active-card {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(75, 0, 130, .15);
+        }
+
+        .card-thumb {
+            width: 100%;
+            display: block;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+        }
+
+        .card-footer {
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-footer span {
+            font-weight: 700;
+        }
+
+        .select-badge {
+            background: var(--primary);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: .8rem;
+        }
+
+        /* المحرر */
+        .editor-layout {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 25px;
+            margin-top: 20px;
+            align-items: start;
+        }
+
+        canvas {
+            width: 100%;
+            border-radius: 22px;
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+        }
+
+        .controls {
+            background: #fff;
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+            display: grid;
+            gap: 16px;
+        }
+
+        .controls label {
+            font-weight: 700;
+            color: #444;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .controls input,
+        .controls select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #d1d5db;
+            font-family: 'Cairo', sans-serif;
+            outline: none;
+        }
+
+        .controls input:focus,
+        .controls select:focus {
+            border-color: var(--primary);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .hint {
+            margin-top: 14px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: .92rem;
+        }
+
+        /* مؤشر تحميل الخط */
+        .loading-font {
+            display: none;
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: .9rem;
+            font-weight: bold;
+        }
+
+        .loading-font.active {
+            display: block !important;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .5
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        @media(max-width:900px) {
+            .editor-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .cards-container{
+    grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- الصفحة الأولى -->
+    <div id="step1" class="step active">
+
+        <div class="hero">
+
+            <img src="logo.png" id="logo-start" alt="شعار">
+
+            <h1>عيد أضحى مبارك</h1>
+
+            <p>
+                صمم بطاقتك  بسهولة مع الاختيار الذكي
+            </p>
+
+            <button class="primary-btn" onclick="changeStep(1,2)">
+                ابدأ التصميم
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- صفحة التصميم -->
+    <div id="step2" class="step">
+
+        <!-- الهيدر -->
+        <header class="top-header">
+
+            <div class="brand">
+
+                <img src="logo.png" alt="شعار">
+
+                <div class="brand-text">
+                    <h2>الاختيار الذكي</h2>
+                    <p>منصة تصميم بطاقات المعايدة</p>
+                </div>
+
+            </div>
+
+            <div class="header-badge">
+                🎨 صمم بطاقتك الآن
+            </div>
+
+        </header>
+
+        <div class="page-content">
+
+            <div class="section-title">
+
+                <h1>اختر التصميم المناسب</h1>
+
+                <p>
+                    اضغط على أي بطاقة للبدء في التعديل
+                </p>
+
+            </div>
+
+            <!-- البطاقات -->
+<div id="gallery" class="cards-container">
+
+    <!-- البطاقة الأولى -->
+    <div class="card-item" onclick="selectCard('card1.jpeg', this)">
+
+        <img src="card1.jpeg" class="card-thumb">
+
+        <div class="card-footer">
+            <span>التصميم الأول</span>
+            <div class="select-badge">اختيار</div>
+        </div>
+
+    </div>
+
+    <!-- البطاقة الثانية -->
+    <div class="card-item" onclick="selectCard('card2.jpeg', this)">
+
+        <img src="card2.jpeg" class="card-thumb">
+
+        <div class="card-footer">
+            <span>التصميم الثاني</span>
+            <div class="select-badge">اختيار</div>
+        </div>
+
+    </div>
+
+    <!-- البطاقة الثالثة -->
+    <div class="card-item" onclick="selectCard('card3.jpeg', this)">
+
+        <img src="card3.jpeg" class="card-thumb">
+
+        <div class="card-footer">
+            <span>التصميم الثالث</span>
+            <div class="select-badge">اختيار</div>
+        </div>
+
+    </div>
+
+    <!-- البطاقة الرابعة -->
+    <div class="card-item" onclick="selectCard('card4.jpeg', this)">
+
+        <img src="card4.jpeg" class="card-thumb">
+
+        <div class="card-footer">
+            <span>التصميم الرابع</span>
+            <div class="select-badge">اختيار</div>
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- المحرر -->
+            <div class="editor-layout">
+
+                <div>
+
+                    <canvas id="canvas" style="display:none;"></canvas>
+
+                    <div class="hint" id="hint" style="display:none;">
+                        💡 اضغط داخل البطاقة لتحديد مكان ظهور الاسم
+                    </div>
+
+                </div>
+
+                <!-- الأدوات -->
+                <div id="editor-controls" class="controls" style="display:none;">
+
+                    <div class="loading-font" id="fontLoader">
+                        ⏳ جاري تحميل الخط...
+                    </div>
+
+                    <div>
+
+                        <label>الاسم على البطاقة</label>
+
+                        <input type="text"
+                            id="nameInput"
+                            placeholder="اكتب الاسم هنا"
+                            oninput="draw()">
+
+                    </div>
+
+                    <div>
+
+                        <label>نوع الخط</label>
+
+                        <select id="fontSelect" onchange="draw()">
+
+                            <option value="'Cairo'">Cairo</option>
+
+                            <option value="'Tajawal'">Tajawal</option>
+
+                            <option value="'Amiri'">Amiri</option>
+
+                            <option value="'Reem Kufi'">Reem Kufi</option>
+
+                            <option value="'Almarai'">Almarai</option>
+
+                            <option value="'Changa'">Changa</option>
+
+                            <option value="'IBM Plex Sans Arabic'">
+                                IBM Plex Sans Arabic
+                            </option>
+
+                            <option value="'Noto Naskh Arabic'">
+                                خط النسخ
+                            </option>
+
+                            <option value="'Lateef'">Lateef</option>
+
+                            <option value="'Markazi Text'">
+                                Markazi Text
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label>حجم الخط</label>
+
+                        <input type="number"
+                            id="fontSize"
+                            value="60"
+                            min="20"
+                            max="200"
+                            oninput="draw()">
+
+                    </div>
+
+                    <div>
+
+                        <label>لون النص</label>
+
+                        <input type="color"
+                            id="colorPicker"
+                            value="#4B0082"
+                            onchange="draw()">
+
+                    </div>
+
+                    <div>
+
+                        <label>وزن الخط</label>
+
+                        <select id="fontWeight" onchange="draw()">
+
+                            <option value="normal">عادي</option>
+
+                            <option value="bold">عريض</option>
+
+                        </select>
+
+                    </div>
+
+                    <button class="download-btn" onclick="downloadCard()">
+                        تنزيل البطاقة
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const bg = new Image();
+
+        let pos = {
+            x: 540,
+            y: 540
+        };
+
+        // الخطوط المحملة
+        const loadedFonts = new Set();
+
+        // تغيير الصفحات
+        function changeStep(from, to) {
+
+            document.getElementById('step' + from)
+                .classList.remove('active');
+
+            document.getElementById('step' + to)
+                .classList.add('active');
+        }
+
+        // اختيار البطاقة
+        function selectCard(src, element) {
+
+            document.querySelectorAll('.card-item')
+                .forEach(card => {
+                    card.classList.remove('active-card');
+                });
+
+            element.classList.add('active-card');
+
+            // اخفاء البطاقات
+            document.getElementById('gallery')
+                .classList.add('gallery-hidden');
+
+            bg.src = src;
+
+            bg.onload = () => {
+
+                canvas.width = bg.naturalWidth;
+                canvas.height = bg.naturalHeight;
+
+                canvas.style.display = 'block';
+
+                document.getElementById('editor-controls')
+                    .style.display = 'grid';
+
+                document.getElementById('hint')
+                    .style.display = 'block';
+
+                draw();
+            };
+        }
+
+        // تحديد مكان النص
+        canvas.addEventListener('mousedown', updatePosition);
+        canvas.addEventListener('touchstart', updatePosition);
+
+        function updatePosition(event) {
+
+            const rect = canvas.getBoundingClientRect();
+
+            const touch = event.touches ? event.touches[0] : event;
+
+            pos.x = (touch.clientX - rect.left)
+                * (canvas.width / rect.width);
+
+            pos.y = (touch.clientY - rect.top)
+                * (canvas.height / rect.height);
+
+            draw();
+        }
+
+        // تحميل الخط
+        async function loadSelectedFont(font) {
+
+            const loader =
+                document.getElementById('fontLoader');
+
+            // اذا كان محمل مسبقاً
+            if (loadedFonts.has(font)) {
+                return true;
+            }
+
+            loader.classList.add('active');
+
+            loader.innerHTML =
+                '⏳ جاري تحميل الخط...';
+
+            try {
+
+                await document.fonts.load(
+                    `normal 60px ${font}`
+                );
+
+                await document.fonts.ready;
+
+                const isLoaded =
+                    document.fonts.check(
+                        `60px ${font}`
+                    );
+
+                if (isLoaded) {
+
+                    loadedFonts.add(font);
+
+                    loader.innerHTML =
+                        '✅ تم تحميل الخط';
+
+                    setTimeout(() => {
+                        loader.classList.remove('active');
+                    }, 700);
+
+                    return true;
+                }
+
+                throw new Error('Font not loaded');
+
+            } catch (error) {
+
+                console.error(
+                    'خطأ أثناء تحميل الخط:',
+                    error
+                );
+
+                loader.innerHTML =
+                    '⚠️ تعذر تحميل الخط';
+
+                setTimeout(() => {
+                    loader.classList.remove('active');
+                }, 1500);
+
+                return false;
+            }
+        }
+
+        // الرسم
+        async function draw() {
+
+            if (!bg.src) return;
+
+            const font =
+                document.getElementById('fontSelect').value;
+
+            const fontSize =
+                document.getElementById('fontSize').value;
+
+            const fontWeight =
+                document.getElementById('fontWeight').value;
+
+            const text =
+                document.getElementById('nameInput').value;
+
+            const color =
+                document.getElementById('colorPicker').value;
+
+            // تحميل الخط قبل الرسم
+            await loadSelectedFont(font);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.drawImage(bg, 0, 0);
+
+            ctx.fillStyle = color;
+
+            ctx.textAlign = 'center';
+
+            ctx.textBaseline = 'middle';
+
+            ctx.font =
+                `${fontWeight} ${fontSize}px ${font}`;
+
+            // ظل النص
+            ctx.shadowColor = 'rgba(0,0,0,.18)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetY = 2;
+
+            ctx.fillText(text, pos.x, pos.y);
+
+            // إعادة الظل
+            ctx.shadowColor = 'transparent';
+        }
+
+        // تحميل البطاقة
+        function downloadCard() {
+
+            const link = document.createElement('a');
+
+            link.download = 'بطاقة-العيد.png';
+
+            link.href =
+                canvas.toDataURL('image/png', 1);
+
+            link.click();
+        }
+
+    </script>
+
+</body>
+
+</html>
