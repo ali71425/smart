@@ -426,44 +426,68 @@
 
         @media(max-width:900px) {
 
-    /* ترتيب الصفحة */
-    .editor-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    align-items: center;
-}
+    .editor-layout{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:18px;
+    }
 
-    /* البطاقة ثابتة بالأعلى */
+    .cards-container{
+        grid-template-columns:repeat(2,1fr);
+        gap:14px;
+    }
+
+    .hero h1{
+        font-size:1.9rem;
+    }
+
+    /* منطقة المعاينة */
     .preview-section{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
 
-/* تثبيت البطاقة فقط */
-.preview-section canvas{
-    position: sticky;
-    top: 85px;
+    /* البطاقة */
+    .preview-section canvas{
+        position:sticky;
+        top:85px;
 
-    /* تصغير المعاينة فقط */
-    width: 68%;
+        width:72%;
+        max-width:240px;
+        height:auto;
 
-    /* أقصى عرض */
-    max-width: 220px;
+        z-index:1;
+    }
 
-    height: auto;
+    /* عند فتح الكيبورد */
+    .keyboard-open .preview-section canvas{
+        position:relative !important;
+        top:0 !important;
+    }
 
-    z-index: 1;
-}
-.controls{
-    position: relative;
-    z-index: 2;
-}
-.preview-section canvas{
-    width: 72%;
-    max-width: 240px;
+    /* أدوات التحرير */
+    .controls{
+        width:100%;
+        max-width:420px;
+
+        position:relative;
+        z-index:2;
+
+        margin-top:10px;
+
+        display:grid;
+        gap:16px;
+
+        background:#fff;
+    }
+
+    /* تحسين إدخال الاسم */
+    #nameInput{
+        font-size:16px;
+    }
 }
 
     /* أدوات التحرير أسفل البطاقة */
@@ -541,39 +565,7 @@
     transform:translateY(-2px);
     opacity:.9;
 }
-/* منطقة البطاقة */
-.preview-section{
-    position: sticky;
-    top: 85px;
-    z-index: 5;
 
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* أدوات التحرير */
-.controls{
-    width:100%;
-    max-width:420px;
-
-    max-height:70vh;
-    overflow-y:auto;
-
-    scroll-behavior:smooth;
-}
-
-/* تحسين شريط التمرير */
-.controls::-webkit-scrollbar{
-    width:8px;
-}
-
-.controls::-webkit-scrollbar-thumb{
-    background:rgba(75,0,130,.35);
-    border-radius:20px;
-}
 /* عند فتح الكيبورد */
 .keyboard-open .preview-section canvas{
     position: relative !important;
