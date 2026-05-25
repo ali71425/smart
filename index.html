@@ -574,6 +574,11 @@
     background:rgba(75,0,130,.35);
     border-radius:20px;
 }
+/* عند فتح الكيبورد */
+.keyboard-open .preview-section canvas{
+    position: relative !important;
+    top: 0 !important;
+}
     </style>
 </head>
 
@@ -829,7 +834,26 @@
 
         // الخطوط المحملة
         const loadedFonts = new Set();
+        /* معالجة ظهور الكيبورد بالجوال */
 
+const nameInput =
+    document.getElementById('nameInput');
+
+nameInput.addEventListener('focus', () => {
+
+    document.body.classList.add(
+        'keyboard-open'
+    );
+
+});
+
+nameInput.addEventListener('blur', () => {
+
+    document.body.classList.remove(
+        'keyboard-open'
+    );
+
+});
         // تغيير الصفحة
         function changeStep(from, to) {
 
